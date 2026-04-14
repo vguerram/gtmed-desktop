@@ -123,12 +123,29 @@ export default function TrilhaPage() {
                 </div>
               )}
 
-              {/* Connector line */}
-              {wi > 0 && (
-                <div className="flex justify-center">
-                  <div className="w-0.5 h-6" style={{ backgroundColor: '#21262D' }} />
-                </div>
-              )}
+              {/* Connector curve between nodes */}
+              {wi > 0 && (() => {
+                const prevPos = ZIGZAG[(wi - 1) % 5];
+                const currPos = pos;
+                // Map positions to X percentages
+                const xMap = { left: 20, center: 50, right: 80 };
+                const x1 = xMap[prevPos];
+                const x2 = xMap[currPos];
+                // SVG path from bottom of prev node to top of current
+                const cp1x = x1;
+                const cp2x = x2;
+                return (
+                  <svg width="100%" height="40" className="block -my-1" style={{ overflow: 'visible' }}>
+                    <path
+                      d={`M ${x1}% 0 C ${cp1x}% 50%, ${cp2x}% 50%, ${x2}% 100%`}
+                      fill="none"
+                      stroke="#21262D"
+                      strokeWidth="2"
+                      strokeDasharray="6 4"
+                    />
+                  </svg>
+                );
+              })()}
 
               {/* Node */}
               <div className={`w-fit ${alignClass}`}>
