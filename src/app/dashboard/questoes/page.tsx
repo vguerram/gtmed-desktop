@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { getFilterOptions, getEspecialidades, getRandomQuestions, countQuestions } from '@/services/questions';
+import { getAutoralQuestions, getAutoralQuestionsStats } from '@/services/autoral';
 import type { QuestionRow } from '@/services/questions';
 
 const NUM_PRESETS = [10, 20, 30, 50];
@@ -12,8 +13,13 @@ const TIPO_PROVA_CHIPS = [
   { value: 'R+CIR', label: 'R+ CIR' },
   { value: 'REVALIDA', label: 'REVALIDA' },
 ];
+const FONTE_OPTIONS = [
+  { value: 'bancas', label: '📋 Bancas' },
+  { value: 'autorais', label: '🎯 Autorais GTMED' },
+];
 
 export default function QuestoesPage() {
+  const [fonte, setFonte] = useState<'bancas' | 'autorais'>('autorais');
   const [grandeArea, setGrandeArea] = useState('');
   const [especialidade, setEspecialidade] = useState('');
   const [tipoProva, setTipoProva] = useState('');
@@ -51,12 +57,38 @@ export default function QuestoesPage() {
 
   async function handleStart() {
     setLoading(true);
-    const qs = await getRandomQuestions({
-      grande_area: grandeArea || undefined,
-      especialidade: especialidade || undefined,
-      tipo_prova: tipoProva || undefined,
-      limit: quantidade,
-    });
+    let qs: QuestionRow[] = [];
+
+    if (fonte === 'autorais') {
+      const res = await getAutoralQuestions({
+        page: 1,
+        limit: quantidade,
+        grande_area: grandeArea || undefined,
+        especialidade: especialidade || undefined,
+      });
+      qs = (res.questions || []).map((q) => ({
+        id: q.id,
+        enunciado: q.content,
+        alternativas: q.options?.map((o) => ({ letra: o.letra, texto: o.texto, correta: o.correta })) || [],
+        gabarito_letra: q.options?.find((o) => o.correta)?.letra || 'A',
+        gabarito_comentado: q.explanation_text_html,
+        gabarito_comentado_txt: q.explanation_text,
+        grande_area: q.specialities?.find((s) => s.type === 'grande_area')?.name || null,
+        especialidade: q.specialities?.find((s) => s.type === 'especialidade')?.name || null,
+        tema: q.tags?.[0]?.name || null,
+        instituicao_nome: null,
+        ano: q.year,
+        imagens: [],
+      }));
+    } else {
+      qs = await getRandomQuestions({
+        grande_area: grandeArea || undefined,
+        especialidade: especialidade || undefined,
+        tipo_prova: tipoProva || undefined,
+        limit: quantidade,
+      });
+    }
+
     setQuestions(qs);
     setCurrentIdx(0);
     setSelected(null);
@@ -198,7 +230,31 @@ export default function QuestoesPage() {
       <div className="rounded-2xl p-6" style={{ backgroundColor: '#141414', border: '1px solid #21262D' }}>
         <h2 className="text-lg font-bold text-white mb-4" style={{ fontFamily: 'Syne, sans-serif' }}>Configurar prova</h2>
 
-        {/* Tipo de Prova */}
+        {/* Fonte */}
+        <div className="mb-4">
+          <label className="block text-[10px] font-bold tracking-wider mb-2" style={{ color: '#3A3A55' }}>FONTE DAS QUESTÕES</label>
+          <div className="flex gap-2">
+            {FONTE_OPTIONS.map((f) => (
+              <button
+                key={f.value}
+                onClick={() => setFonte(f.value as 'bancas' | 'autorais')}
+                className="flex-1 py-2.5 rounded-lg text-[12px] font-semibold transition-all"
+                style={{
+                  backgroundColor: fonte === f.value ? 'rgba(232,23,44,0.15)' : '#0C0E18',
+                  border: `1.5px solid ${fonte === f.value ? '#E8172C' : '#1A1C2C'}`,
+                  color: fonte === f.value ? '#E8172C' : '#8B949E',
+                }}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+          <p className="text-[10px] mt-1" style={{ color: '#484F58' }}>
+            {fonte === 'autorais' ? '5.174 questões autorais GTMED (Opus 4.6)' : 'Questões de bancas reais (USP, UNIFESP, ENARE...)'}
+          </p>
+        </div>
+
+        {/* Tipo de Prova (só para bancas) */}
         <div className="mb-4">
           <label className="block text-[10px] font-bold tracking-wider mb-2" style={{ color: '#3A3A55' }}>TIPO DE PROVA</label>
           <div className="flex gap-2 flex-wrap">

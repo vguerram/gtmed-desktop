@@ -1,6 +1,12 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import { getReviewSummary } from '@/services/review';
+import type { ReviewSummary } from '@/services/review';
+
 export default function RevisaoPage() {
+  const [summary, setSummary] = useState<ReviewSummary>({ today: 0, tomorrow: 0, week: 0, overdue: 0 });
+  useEffect(() => { getReviewSummary().then(setSummary); }, []);
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>🔁 Revisão</h1>
@@ -8,10 +14,10 @@ export default function RevisaoPage() {
 
       {/* Summary cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-        <SummaryCard label="Hoje" value={0} color="#E8172C" icon="📅" />
-        <SummaryCard label="Amanhã" value={0} color="#FF8C00" icon="⏰" />
-        <SummaryCard label="Esta semana" value={0} color="#00CFFF" icon="📆" />
-        <SummaryCard label="Atrasados" value={0} color="#FF1A1A" icon="⚠️" />
+        <SummaryCard label="Hoje" value={summary.today} color="#E8172C" icon="📅" />
+        <SummaryCard label="Amanhã" value={summary.tomorrow} color="#FF8C00" icon="⏰" />
+        <SummaryCard label="Esta semana" value={summary.week} color="#00CFFF" icon="📆" />
+        <SummaryCard label="Atrasados" value={summary.overdue} color="#FF1A1A" icon="⚠️" />
       </div>
 
       {/* Revisão de questões */}
