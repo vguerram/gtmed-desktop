@@ -1,9 +1,25 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useGamificationStore } from '@/stores/gamificationStore';
 
 export default function LevelUpModal() {
   const { showLevelUp, levelUpNivel, titulo, dismissLevelUp } = useGamificationStore();
+
+  // Auto-dismiss after 5s
+  useEffect(() => {
+    if (!showLevelUp) return;
+    const timer = setTimeout(dismissLevelUp, 5000);
+    return () => clearTimeout(timer);
+  }, [showLevelUp, dismissLevelUp]);
+
+  // ESC to close
+  useEffect(() => {
+    if (!showLevelUp) return;
+    const handleKey = (e: KeyboardEvent) => { if (e.key === 'Escape') dismissLevelUp(); };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [showLevelUp, dismissLevelUp]);
 
   if (!showLevelUp) return null;
 

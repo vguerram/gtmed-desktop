@@ -2,6 +2,15 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://web-production-c9715
 const TOKEN_KEY = '@gtmed:token';
 const USER_KEY = '@gtmed:user';
 
+// ── Auth expiration listener ──
+type AuthExpiredListener = () => void;
+const authExpiredListeners: Set<AuthExpiredListener> = new Set();
+
+export function onAuthExpired(listener: AuthExpiredListener): () => void {
+  authExpiredListeners.add(listener);
+  return () => { authExpiredListeners.delete(listener); };
+}
+
 // ── Rate Limit (429) listener ──
 export type RateLimitType = 'questions' | 'flashcards' | 'unknown';
 type RateLimitListener = (type: RateLimitType) => void;
@@ -44,23 +53,31 @@ async function request<T>(
       ...options,
       headers,
     });
-  } catch {
+  } catch (err) {
+    console.error('[GTMED API] Network error:', err);
     throw new Error('Erro de conexão. Verifique sua internet e tente novamente.');
   }
 
   if (!res.ok) {
+    // Handle expired/invalid token
     if (res.status === 401) {
+      console.warn('[GTMED API] Token expirado ou inválido — limpando sessão');
       localStorage.removeItem(TOKEN_KEY);
       localStorage.removeItem(USER_KEY);
+      authExpiredListeners.forEach(fn => fn());
     }
 
     const data = await res.json().catch(() => ({}));
 
+    // Handle rate limit
     if (res.status === 429) {
+      console.warn('[GTMED API] Rate limit atingido:', data);
       notifyRateLimit(data);
     }
 
-    throw new Error(data.error || `HTTP ${res.status}`);
+    const errorMsg = (data as Record<string, string>).error || `Erro HTTP ${res.status}`;
+    console.error(`[GTMED API] ${res.status} ${path}:`, errorMsg);
+    throw new Error(errorMsg);
   }
 
   return res.json();
