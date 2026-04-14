@@ -2,7 +2,7 @@
 
 export default function SuportePage() {
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl">
       <h1 className="text-2xl font-bold text-white mb-6" style={{ fontFamily: 'Syne, sans-serif' }}>💬 Suporte</h1>
 
       <div className="space-y-4">

@@ -6,7 +6,7 @@ export default function DesafiosPage() {
   const [tab, setTab] = useState<'pendentes' | 'ativos' | 'finalizados'>('pendentes');
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-4xl">
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>⚔️ Desafios</h1>
       <p className="text-[13px] mb-6" style={{ color: '#8B949E' }}>Desafie outros alunos e ganhe XP extra</p>
 
@@ -35,7 +35,7 @@ export default function DesafiosPage() {
           <h3 className="text-lg font-bold text-white mt-3" style={{ fontFamily: 'Syne, sans-serif' }}>Desafie alguém agora!</h3>
           <p className="text-[12px] mt-1 mb-4" style={{ color: '#484F58' }}>Escolha um rival, uma especialidade e o número de questões</p>
 
-          <div className="max-w-xs mx-auto mb-4">
+          <div className="max-w-xs  mb-4">
             <input
               placeholder="Buscar rival por nome..."
               className="w-full h-11 rounded-[11px] px-3.5 text-[14px] text-white outline-none text-center"

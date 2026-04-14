@@ -42,7 +42,7 @@ const AREAS_APOSTILAS = [
 
 export default function ApostilasPage() {
   return (
-    <div className="max-w-3xl mx-auto">
+    <div>
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>📚 Apostilas</h1>
       <p className="text-[13px] mb-6" style={{ color: '#8B949E' }}>Material de estudo organizado por especialidade</p>
 

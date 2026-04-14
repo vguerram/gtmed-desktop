@@ -8,7 +8,7 @@ export default function RevisaoPage() {
   const [summary, setSummary] = useState<ReviewSummary>({ today: 0, tomorrow: 0, week: 0, overdue: 0 });
   useEffect(() => { getReviewSummary().then(setSummary); }, []);
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl">
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>🔁 Revisão</h1>
       <p className="text-[13px] mb-6" style={{ color: '#8B949E' }}>Revisão espaçada (SRS) de questões e flashcards</p>
 

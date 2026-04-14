@@ -123,7 +123,7 @@ export default function QuestoesPage() {
   if (questions.length > 0 && currentIdx >= questions.length) {
     const pct = Math.round((score.correct / score.total) * 100);
     return (
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl">
         <h1 className="text-2xl font-bold text-white mb-6" style={{ fontFamily: 'Syne, sans-serif' }}>Resultado</h1>
         <div className="rounded-2xl p-8 text-center" style={{ backgroundColor: '#141414', border: '1px solid #21262D' }}>
           <p className="text-6xl font-bold mb-2" style={{ color: pct >= 70 ? '#00C853' : '#E8172C', fontFamily: 'Syne, sans-serif' }}>{pct}%</p>
@@ -145,7 +145,7 @@ export default function QuestoesPage() {
     const q = questions[currentIdx];
     const correctLetra = q.alternativas.find((a) => a.correta)?.letra;
     return (
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-lg font-bold text-white" style={{ fontFamily: 'Syne, sans-serif' }}>
             Questão {currentIdx + 1} de {questions.length}
@@ -224,7 +224,7 @@ export default function QuestoesPage() {
 
   // ── Filter/create screen ──
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl">
       <h1 className="text-2xl font-bold text-white mb-6" style={{ fontFamily: 'Syne, sans-serif' }}>Questões</h1>
 
       <div className="rounded-2xl p-6" style={{ backgroundColor: '#141414', border: '1px solid #21262D' }}>

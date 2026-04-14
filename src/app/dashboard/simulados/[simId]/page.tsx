@@ -84,8 +84,8 @@ export default function SimuladoEmAndamento() {
   // Loading
   if (status === 'loading') {
     return (
-      <div className="max-w-3xl mx-auto text-center py-20">
-        <div className="w-8 h-8 border-2 border-white/30 border-t-[#E8172C] rounded-full animate-spin mx-auto mb-4" />
+      <div className="max-w-3xl  text-center py-20">
+        <div className="w-8 h-8 border-2 border-white/30 border-t-[#E8172C] rounded-full animate-spin mb-4" />
         <p style={{ color: '#8B949E' }}>Preparando simulado...</p>
       </div>
     );
@@ -96,7 +96,7 @@ export default function SimuladoEmAndamento() {
     const pct = score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
     const tempoGasto = TOTAL_SECS - timeLeft;
     return (
-      <div className="max-w-2xl mx-auto text-center">
+      <div className="max-w-2xl  text-center">
         <span className="text-6xl">{status === 'timeout' ? '⏰' : pct >= 70 ? '🏆' : '📊'}</span>
         <h1 className="text-2xl font-bold text-white mt-4 mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>
           {status === 'timeout' ? 'Tempo Esgotado!' : 'Simulado Concluído'}
@@ -129,7 +129,7 @@ export default function SimuladoEmAndamento() {
   const isLowTime = timeLeft < 30 * 60;
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl">
       {/* Timer bar */}
       <div className="flex items-center gap-3 mb-4">
         <span className="text-[12px] font-bold" style={{ color: isLowTime ? '#E8172C' : '#00CFFF' }}>

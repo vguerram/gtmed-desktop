@@ -29,7 +29,7 @@ export default function ComparativoPage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl">
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>📊 Comparativo</h1>
       <p className="text-[13px] mb-6" style={{ color: '#8B949E' }}>Compare seu progresso com outros alunos</p>
 

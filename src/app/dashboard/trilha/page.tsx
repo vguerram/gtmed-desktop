@@ -27,7 +27,7 @@ export default function TrilhaPage() {
 
   if (loading) {
     return (
-      <div className="max-w-3xl mx-auto">
+      <div>
         <h1 className="text-2xl font-bold text-white mb-6" style={{ fontFamily: 'Syne, sans-serif' }}>🗺️ Trilha</h1>
         <p style={{ color: '#484F58' }}>Carregando trilha...</p>
       </div>
@@ -35,7 +35,7 @@ export default function TrilhaPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div>
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>🗺️ Trilha</h1>
       <p className="text-[13px] mb-6" style={{ color: '#8B949E' }}>45 semanas de estudo gamificado para residência médica</p>
 

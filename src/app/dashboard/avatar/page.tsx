@@ -45,7 +45,7 @@ export default function AvatarPage() {
   const bg = BGS.find((b) => b.id === selectedBg);
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl">
       <h1 className="text-2xl font-bold text-white mb-6" style={{ fontFamily: 'Syne, sans-serif' }}>🎨 Avatar</h1>
 
       {/* Preview */}

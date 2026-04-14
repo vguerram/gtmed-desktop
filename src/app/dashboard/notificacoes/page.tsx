@@ -14,7 +14,7 @@ export default function NotificacoesPage() {
   useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-white" style={{ fontFamily: 'Syne, sans-serif' }}>🔔 Notificações</h1>

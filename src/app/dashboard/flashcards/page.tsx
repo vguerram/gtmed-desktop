@@ -256,7 +256,7 @@ export default function FlashcardsPage() {
 
       {mode === 'autoral' && autoralLoading && (
         <div className="text-center py-12">
-          <div className="w-6 h-6 border-2 border-white/20 border-t-[#E8172C] rounded-full animate-spin mx-auto mb-3" />
+          <div className="w-6 h-6 border-2 border-white/20 border-t-[#E8172C] rounded-full animate-spin mb-3" />
           <p className="text-[13px]" style={{ color: '#484F58' }}>Carregando flashcards autorais...</p>
         </div>
       )}
@@ -298,7 +298,7 @@ export default function FlashcardsPage() {
           <div className="lg:col-span-2">
             {loading ? (
               <div className="text-center py-12">
-                <div className="w-6 h-6 border-2 border-white/20 border-t-[#E8172C] rounded-full animate-spin mx-auto mb-3" />
+                <div className="w-6 h-6 border-2 border-white/20 border-t-[#E8172C] rounded-full animate-spin mb-3" />
                 <p className="text-[13px]" style={{ color: '#484F58' }}>Carregando decks...</p>
               </div>
             ) : decks.length === 0 ? (

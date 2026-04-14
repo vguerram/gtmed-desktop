@@ -15,7 +15,7 @@ export default function ConfiguracoesPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl">
       <h1 className="text-2xl font-bold text-white mb-6" style={{ fontFamily: 'Syne, sans-serif' }}>⚙️ Configurações</h1>
 
       {/* Conta */}

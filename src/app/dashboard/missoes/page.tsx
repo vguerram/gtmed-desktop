@@ -15,7 +15,7 @@ export default function MissoesPage() {
   const concluidas = MISSOES.filter((m) => m.atual >= m.meta).length;
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl">
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>🎯 Missões do Dia</h1>
       <p className="text-[13px] mb-6" style={{ color: '#8B949E' }}>
         {concluidas}/{MISSOES.length} concluídas · {totalXP} XP disponíveis

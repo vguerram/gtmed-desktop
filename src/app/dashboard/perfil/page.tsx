@@ -6,7 +6,7 @@ export default function PerfilPage() {
   const user = useAuthStore((s) => s.user);
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-3xl">
       <h1 className="text-2xl font-bold text-white mb-6" style={{ fontFamily: 'Syne, sans-serif' }}>Perfil</h1>
 
       {/* Avatar + Info */}

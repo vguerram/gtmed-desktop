@@ -56,7 +56,7 @@ export default function BossPage() {
     const pct = Math.round((score.correct / score.total) * 100);
     const passed = pct >= BOSS_PASS_PCT;
     return (
-      <div className="max-w-2xl mx-auto text-center">
+      <div className="max-w-2xl  text-center">
         <span className="text-6xl">{passed ? '🏆' : '💀'}</span>
         <h1 className="text-3xl font-bold text-white mt-4 mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>
           {passed ? 'Boss Derrotado!' : 'Boss Venceu...'}
@@ -88,7 +88,7 @@ export default function BossPage() {
     const correctLetra = q.alternativas.find((a) => a.correta)?.letra;
     const progressPct = ((currentIdx + 1) / questions.length) * 100;
     return (
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <span className="text-xl">👹</span>
@@ -142,7 +142,7 @@ export default function BossPage() {
 
   // Start screen
   return (
-    <div className="max-w-lg mx-auto text-center">
+    <div className="max-w-lg  text-center">
       <span className="text-[80px]">👹</span>
       <h1 className="text-2xl font-bold text-white mt-4 mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>Boss Galáctico</h1>
       <p className="text-[14px] mb-1" style={{ color: '#8B949E' }}>Semana {semana} — Prova final do capítulo</p>

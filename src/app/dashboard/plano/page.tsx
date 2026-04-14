@@ -58,7 +58,7 @@ export default function PlanoPage() {
   const { tipo, isPro, getQuestoesRestantes, getFlashcardsRestantes } = usePlanStore();
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl">
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>💎 Planos</h1>
       <p className="text-[13px] mb-6" style={{ color: '#8B949E' }}>
         {isPro ? 'Você é Pro! Aproveite todos os recursos.' : `Plano atual: Gratuito · ${getQuestoesRestantes()} questões restantes hoje`}

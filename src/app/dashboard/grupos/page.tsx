@@ -2,7 +2,7 @@
 
 export default function GruposPage() {
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl">
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>👥 Grupos</h1>
       <p className="text-[13px] mb-6" style={{ color: '#8B949E' }}>Estude em grupo e acompanhe o progresso dos colegas</p>
 
@@ -13,7 +13,7 @@ export default function GruposPage() {
           <h3 className="text-lg font-bold text-white mt-3" style={{ fontFamily: 'Syne, sans-serif' }}>Crie seu esquadrão</h3>
           <p className="text-[12px] mt-1 mb-4" style={{ color: '#484F58' }}>Convide colegas para estudar juntos e competir no ranking do grupo</p>
 
-          <div className="max-w-xs mx-auto mb-4">
+          <div className="max-w-xs  mb-4">
             <input
               placeholder="Nome do grupo..."
               className="w-full h-11 rounded-[11px] px-3.5 text-[14px] text-white outline-none text-center"

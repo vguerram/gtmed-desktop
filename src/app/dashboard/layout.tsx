@@ -112,20 +112,29 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         }}
       >
         {/* Logo */}
-        <div className="p-4 pb-3 flex items-center justify-between">
+        <div className="px-4 pt-5 pb-4 flex items-center justify-between">
           {sidebarOpen ? (
             <div>
-              <div className="flex items-center">
-                <span className="text-lg font-[900] text-white" style={{ fontFamily: 'var(--font-syne), Syne, sans-serif' }}>GT</span>
-                <span className="text-lg font-[900]" style={{ fontFamily: 'var(--font-syne), Syne, sans-serif', color: '#E8172C' }}>MED</span>
+              <div className="flex items-baseline gap-0">
+                <span className="text-[20px] font-[900] leading-none text-white" style={{ fontFamily: 'var(--font-syne), Syne, sans-serif', letterSpacing: '-0.5px' }}>GT</span>
+                <span className="text-[20px] font-[900] leading-none" style={{ fontFamily: 'var(--font-syne), Syne, sans-serif', color: '#E8172C', letterSpacing: '-0.5px' }}>MED</span>
               </div>
-              <p className="text-[8px] font-semibold tracking-[1px]" style={{ color: '#484F58' }}>RESIDÊNCIA MÉDICA</p>
+              <p className="text-[7px] font-semibold tracking-[1.5px] mt-0.5" style={{ color: '#484F58' }}>RESIDÊNCIA MÉDICA</p>
             </div>
           ) : (
-            <span className="text-lg font-[900] mx-auto" style={{ color: '#E8172C' }}>G</span>
+            <div className="mx-auto flex flex-col items-center">
+              <span className="text-[14px] font-[900] leading-none" style={{ fontFamily: 'var(--font-syne), Syne, sans-serif', color: '#E8172C' }}>G</span>
+              <span className="text-[6px] font-bold mt-0.5" style={{ color: '#484F58' }}>MED</span>
+            </div>
           )}
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="text-[11px] ml-1" style={{ color: '#484F58' }}>
-            {sidebarOpen ? '◀' : '▶'}
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="w-6 h-6 rounded flex items-center justify-center transition-colors"
+            style={{ color: '#484F58', backgroundColor: 'transparent' }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#141414')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+          >
+            <span className="text-[10px]">{sidebarOpen ? '◀' : '▶'}</span>
           </button>
         </div>
 

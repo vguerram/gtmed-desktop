@@ -25,7 +25,7 @@ export default function RankingPage() {
   const user = useAuthStore((s) => s.user);
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl">
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>🏆 Ranking</h1>
       <p className="text-[13px] mb-6" style={{ color: '#8B949E' }}>Compete com outros alunos e suba no ranking</p>
 

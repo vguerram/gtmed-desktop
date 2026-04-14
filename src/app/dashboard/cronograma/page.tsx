@@ -15,7 +15,7 @@ export default function CronogramaPage() {
   const diaIdx = hoje.getDay();
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div>
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>📅 Cronograma</h1>
       <p className="text-[13px] mb-6" style={{ color: '#8B949E' }}>Sua agenda de estudos organizada por dia</p>
 
