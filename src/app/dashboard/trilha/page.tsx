@@ -127,21 +127,25 @@ export default function TrilhaPage() {
               {wi > 0 && (() => {
                 const prevPos = ZIGZAG[(wi - 1) % 5];
                 const currPos = pos;
-                // Map positions to X percentages
-                const xMap = { left: 20, center: 50, right: 80 };
+                const xMap = { left: 15, center: 50, right: 85 };
                 const x1 = xMap[prevPos];
                 const x2 = xMap[currPos];
-                // SVG path from bottom of prev node to top of current
-                const cp1x = x1;
-                const cp2x = x2;
+                const midY = 35;
                 return (
-                  <svg width="100%" height="40" className="block -my-1" style={{ overflow: 'visible' }}>
+                  <svg width="100%" height="70" className="block" style={{ overflow: 'visible', marginTop: -8, marginBottom: -8 }}>
                     <path
-                      d={`M ${x1}% 0 C ${cp1x}% 50%, ${cp2x}% 50%, ${x2}% 100%`}
+                      d={`M ${x1}% 0 C ${x1}% ${midY}, ${x2}% ${midY}, ${x2}% 70`}
                       fill="none"
-                      stroke="#21262D"
+                      stroke="rgba(232,23,44,0.25)"
                       strokeWidth="2"
-                      strokeDasharray="6 4"
+                      strokeDasharray="8 5"
+                    />
+                    {/* Glow line */}
+                    <path
+                      d={`M ${x1}% 0 C ${x1}% ${midY}, ${x2}% ${midY}, ${x2}% 70`}
+                      fill="none"
+                      stroke="rgba(232,23,44,0.08)"
+                      strokeWidth="6"
                     />
                   </svg>
                 );
@@ -161,7 +165,7 @@ export default function TrilhaPage() {
 
                   {/* Circle */}
                   <div
-                    className="relative w-20 h-20 rounded-full flex flex-col items-center justify-center transition-transform group-hover:scale-110"
+                    className="relative w-24 h-24 rounded-full flex flex-col items-center justify-center transition-transform group-hover:scale-110"
                     style={{
                       background: hasContent
                         ? `linear-gradient(135deg, ${areaColor}, ${areaColor}99)`
@@ -171,8 +175,8 @@ export default function TrilhaPage() {
                       opacity: hasContent ? 1 : 0.5,
                     }}
                   >
-                    <span className="text-2xl">{isSimulado ? '🧪' : hasBoss ? '👹' : '🪐'}</span>
-                    <span className="text-[9px] font-bold text-white/80">
+                    <span className="text-3xl">{isSimulado ? '🧪' : hasBoss ? '👹' : '🪐'}</span>
+                    <span className="text-[10px] font-bold text-white/80">
                       {isSimulado ? `SIM ${week.semana - 41}` : `S${week.semana}`}
                     </span>
 
@@ -191,11 +195,11 @@ export default function TrilhaPage() {
                 </p>
 
                 {/* Mini pills below */}
-                <div className="flex justify-center gap-1 mt-1">
-                  {questCount > 0 && <span className="text-[8px] px-1.5 py-0.5 rounded" style={{ backgroundColor: areaColor + '20', color: areaColor }}>📝{questCount}</span>}
-                  {fcCount > 0 && <span className="text-[8px] px-1.5 py-0.5 rounded" style={{ backgroundColor: '#00CFFF20', color: '#00CFFF' }}>⚡{fcCount}</span>}
-                  {videoCount > 0 && <span className="text-[8px] px-1.5 py-0.5 rounded" style={{ backgroundColor: '#7B2FF720', color: '#7B2FF7' }}>🎬{videoCount}</span>}
-                  {hasBoss && <span className="text-[8px] px-1.5 py-0.5 rounded" style={{ backgroundColor: '#E8172C20', color: '#E8172C' }}>👹</span>}
+                <div className="flex justify-center gap-1.5 mt-1.5">
+                  {questCount > 0 && <span className="text-[10px] px-2 py-1 rounded-md font-semibold" style={{ backgroundColor: areaColor + '20', color: areaColor }}>📝 {questCount}</span>}
+                  {fcCount > 0 && <span className="text-[10px] px-2 py-1 rounded-md font-semibold" style={{ backgroundColor: '#00CFFF20', color: '#00CFFF' }}>⚡ {fcCount}</span>}
+                  {videoCount > 0 && <span className="text-[10px] px-2 py-1 rounded-md font-semibold" style={{ backgroundColor: '#7B2FF720', color: '#7B2FF7' }}>🎬 {videoCount}</span>}
+                  {hasBoss && <span className="text-[10px] px-2 py-1 rounded-md font-semibold" style={{ backgroundColor: '#E8172C20', color: '#E8172C' }}>👹 Boss</span>}
                 </div>
               </div>
 
@@ -217,31 +221,39 @@ export default function TrilhaPage() {
                     {week.planeta}
                   </p>
 
-                  {/* Nodes grid */}
+                  {/* Nodes grid — each item is clickable */}
                   <div className="grid grid-cols-2 gap-2 mb-4">
                     {week.nodes.map((node) => {
                       const icons: Record<string, string> = { questoes: '📝', flashcards: '⚡', videoaulas: '🎬', boss: '👹' };
+                      const routes: Record<string, string> = {
+                        questoes: '/dashboard/questoes',
+                        flashcards: '/dashboard/flashcards',
+                        videoaulas: '/dashboard/videoaulas',
+                        boss: '/dashboard/boss',
+                      };
                       const active = node.theme_ids?.length > 0;
                       return (
-                        <div
+                        <Link
                           key={node.id}
-                          className="rounded-xl p-3 flex items-center gap-2"
+                          href={routes[node.tipo] || '/dashboard/questoes'}
+                          className="rounded-xl p-3 flex items-center gap-2 transition-all hover:scale-[1.02]"
                           style={{
                             backgroundColor: active ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.2)',
                             border: `1px solid ${active ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.03)'}`,
+                            cursor: 'pointer',
                           }}
                         >
-                          <span className="text-base">{icons[node.tipo] || '📋'}</span>
+                          <span className="text-lg">{icons[node.tipo] || '📋'}</span>
                           <div className="flex-1 min-w-0">
-                            <p className="text-[11px] font-medium text-white truncate">
+                            <p className="text-[12px] font-medium text-white truncate">
                               {node.titulo.replace(/ — .*/, '')}
                             </p>
                             <p className="text-[9px]" style={{ color: '#484F58' }}>
                               {active ? `${node.theme_ids.length} temas` : 'Sem conteúdo'}
                             </p>
                           </div>
-                          <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: active ? '#00C853' : '#484F58' }} />
-                        </div>
+                          <span className="text-[11px]" style={{ color: active ? '#8B949E' : '#484F58' }}>›</span>
+                        </Link>
                       );
                     })}
                   </div>
