@@ -5,6 +5,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useAuthStore } from '@/stores/authStore';
 import { signOut, getStoredAuth } from '@/services/auth';
 import { useEffect } from 'react';
+import XPAnimation from '@/components/XPAnimation';
+import LevelUpModal from '@/components/LevelUpModal';
 
 const navItems = [
   { href: '/dashboard', label: 'Home', icon: '🏠' },
@@ -17,7 +19,11 @@ const navItems = [
   { href: '/dashboard/desafios', label: 'Desafios', icon: '⚔️' },
   { href: '/dashboard/ranking', label: 'Ranking', icon: '🏆' },
   { href: '/dashboard/evolucao', label: 'Evolução', icon: '📊' },
+  { href: '/dashboard/cronograma', label: 'Cronograma', icon: '📅' },
+  { href: '/dashboard/notificacoes', label: 'Notificações', icon: '🔔' },
   { href: '/dashboard/perfil', label: 'Perfil', icon: '👤' },
+  { href: '/dashboard/configuracoes', label: 'Config', icon: '⚙️' },
+  { href: '/dashboard/suporte', label: 'Suporte', icon: '💬' },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -109,6 +115,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <main className="flex-1 overflow-y-auto p-8" style={{ backgroundColor: '#0A0A0A' }}>
         {children}
       </main>
+
+      {/* Gamification overlays */}
+      <XPAnimation />
+      <LevelUpModal />
     </div>
   );
 }
