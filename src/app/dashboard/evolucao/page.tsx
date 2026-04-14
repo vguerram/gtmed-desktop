@@ -6,7 +6,7 @@ export default function EvolucaoPage() {
   const user = useAuthStore((s) => s.user);
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div>
       <h1 className="text-2xl font-bold text-white mb-6" style={{ fontFamily: 'Syne, sans-serif' }}>Evolução</h1>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">

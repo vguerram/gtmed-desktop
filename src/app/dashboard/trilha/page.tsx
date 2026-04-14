@@ -39,7 +39,7 @@ export default function TrilhaPage() {
       <h1 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Syne, sans-serif' }}>🗺️ Trilha</h1>
       <p className="text-[13px] mb-6" style={{ color: '#8B949E' }}>45 semanas de estudo gamificado para residência médica</p>
 
-      <div className="space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {weeks.map((week) => {
           const isExpanded = expandedWeek === week.semana;
           const areaColor = AREA_COLORS[week.nodes[0]?.grande_area?.toUpperCase()] || '#E8172C';
