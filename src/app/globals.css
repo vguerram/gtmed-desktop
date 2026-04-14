@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* GTMED Design System */
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #141414;
+  --bg-card: #1A1A1A;
+  --bg-elevated: #212121;
+
+  --brand-red: #E8172C;
+  --brand-red-dark: #C00F22;
+  --brand-cyan: #00CFFF;
+  --brand-yellow: #FFB800;
+  --brand-green: #00C853;
+  --brand-purple: #7B2FF7;
+  --brand-orange: #FF8C00;
+
+  --text-primary: #F0F6FC;
+  --text-secondary: #8B949E;
+  --text-muted: #484F58;
+
+  --border-default: #21262D;
+  --border-subtle: #161B22;
+
+  --area-clinica: #E8172C;
+  --area-cirurgia: #FF8C00;
+  --area-pediatria: #00C853;
+  --area-ginecologia: #FF69B4;
+  --area-obstetricia: #7B2FF7;
+  --area-preventiva: #00CFFF;
+}
+
+@theme inline {
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Syne', sans-serif;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Syne', sans-serif;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
