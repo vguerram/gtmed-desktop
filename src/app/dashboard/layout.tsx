@@ -115,16 +115,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div className="px-4 pt-5 pb-4 flex items-center justify-between">
           {sidebarOpen ? (
             <div>
-              <div className="flex items-baseline gap-0">
-                <span className="text-[20px] font-[900] leading-none text-white" style={{ fontFamily: 'var(--font-syne), Syne, sans-serif', letterSpacing: '-0.5px' }}>GT</span>
-                <span className="text-[20px] font-[900] leading-none" style={{ fontFamily: 'var(--font-syne), Syne, sans-serif', color: '#E8172C', letterSpacing: '-0.5px' }}>MED</span>
+              <div className="flex items-baseline">
+                <span className="font-extrabold leading-none text-white" style={{ fontFamily: 'Syne, var(--font-syne), sans-serif', fontSize: '18px', letterSpacing: '-1px' }}>GT</span>
+                <span className="font-extrabold leading-none" style={{ fontFamily: 'Syne, var(--font-syne), sans-serif', fontSize: '18px', color: '#E8172C', letterSpacing: '-1px' }}>MED</span>
               </div>
-              <p className="text-[7px] font-semibold tracking-[1.5px] mt-0.5" style={{ color: '#484F58' }}>RESIDÊNCIA MÉDICA</p>
+              <p className="font-semibold mt-0.5" style={{ fontSize: '7px', letterSpacing: '1.5px', color: '#484F58' }}>RESIDÊNCIA MÉDICA</p>
             </div>
           ) : (
             <div className="mx-auto flex flex-col items-center">
-              <span className="text-[14px] font-[900] leading-none" style={{ fontFamily: 'var(--font-syne), Syne, sans-serif', color: '#E8172C' }}>G</span>
-              <span className="text-[6px] font-bold mt-0.5" style={{ color: '#484F58' }}>MED</span>
+              <span className="font-extrabold leading-none" style={{ fontFamily: 'Syne, var(--font-syne), sans-serif', fontSize: '14px', color: '#E8172C', letterSpacing: '-0.5px' }}>G</span>
+              <span className="font-bold mt-0.5" style={{ fontSize: '6px', color: '#484F58' }}>MED</span>
             </div>
           )}
           <button

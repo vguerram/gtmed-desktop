@@ -127,25 +127,23 @@ export default function TrilhaPage() {
               {wi > 0 && (() => {
                 const prevPos = ZIGZAG[(wi - 1) % 5];
                 const currPos = pos;
-                const xMap = { left: 15, center: 50, right: 85 };
+                const xMap = { left: 75, center: 250, right: 425 };
                 const x1 = xMap[prevPos];
                 const x2 = xMap[currPos];
-                const midY = 35;
                 return (
-                  <svg width="100%" height="70" className="block" style={{ overflow: 'visible', marginTop: -8, marginBottom: -8 }}>
+                  <svg viewBox="0 0 500 80" className="block w-full" style={{ height: 80, marginTop: -4, marginBottom: -4 }} preserveAspectRatio="none">
                     <path
-                      d={`M ${x1}% 0 C ${x1}% ${midY}, ${x2}% ${midY}, ${x2}% 70`}
+                      d={`M ${x1} 0 C ${x1} 40, ${x2} 40, ${x2} 80`}
                       fill="none"
-                      stroke="rgba(232,23,44,0.25)"
-                      strokeWidth="2"
-                      strokeDasharray="8 5"
+                      stroke="rgba(232,23,44,0.1)"
+                      strokeWidth="10"
                     />
-                    {/* Glow line */}
                     <path
-                      d={`M ${x1}% 0 C ${x1}% ${midY}, ${x2}% ${midY}, ${x2}% 70`}
+                      d={`M ${x1} 0 C ${x1} 40, ${x2} 40, ${x2} 80`}
                       fill="none"
-                      stroke="rgba(232,23,44,0.08)"
-                      strokeWidth="6"
+                      stroke="rgba(232,23,44,0.4)"
+                      strokeWidth="2.5"
+                      strokeDasharray="10 6"
                     />
                   </svg>
                 );
@@ -175,7 +173,7 @@ export default function TrilhaPage() {
                       opacity: hasContent ? 1 : 0.5,
                     }}
                   >
-                    <span className="text-3xl">{isSimulado ? '🧪' : hasBoss ? '👹' : '🪐'}</span>
+                    <span className="text-3xl">{isSimulado ? '🧪' : hasBoss ? '👹' : '🚀'}</span>
                     <span className="text-[10px] font-bold text-white/80">
                       {isSimulado ? `SIM ${week.semana - 41}` : `S${week.semana}`}
                     </span>
