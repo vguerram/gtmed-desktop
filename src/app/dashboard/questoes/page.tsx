@@ -285,8 +285,8 @@ export default function QuestoesPage() {
             style={{ backgroundColor: '#0C0E18', border: '1.5px solid #1A1C2C' }}
           >
             <option value="">Todas as áreas</option>
-            {areas.map((a) => (
-              <option key={a} value={a}>{a}</option>
+            {[...new Set(areas)].map((a, i) => (
+              <option key={`${a}-${i}`} value={a}>{a}</option>
             ))}
           </select>
         </div>
@@ -302,8 +302,8 @@ export default function QuestoesPage() {
               style={{ backgroundColor: '#0C0E18', border: '1.5px solid #1A1C2C' }}
             >
               <option value="">Todas</option>
-              {especialidades.map((e) => (
-                <option key={e} value={e}>{e}</option>
+              {[...new Set(especialidades)].map((e, i) => (
+                <option key={`${e}-${i}`} value={e}>{e}</option>
               ))}
             </select>
           </div>
